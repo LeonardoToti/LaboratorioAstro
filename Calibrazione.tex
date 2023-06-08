@@ -1,0 +1,52 @@
+\section{Calibrazione}
+La calibrazione del ricevitore a 1.4 a GHz viene effettuata utilizzando due sorgenti di riferimento, che sono due carichi coassiali adattati, cioè due resistenze a 50$\Omega$. Questi lavorano a due temperature diverse: uno a temperatura ambiente (\textit{warm load}) e l'altro alla temperatura di ebollizione dell'azoto liquido, ovvero 77,36K (\textit{cold load}). \\\\Il carico a temperatura criogenica è connesso al ricevitore tramite un cavo coassiale il quale è immerso parzialmente nell'azoto liquido. Perciò, dato che la temperatura del cavo non è uniforme, ne vanno studiate le caratteristiche di attenuazione in laboratorio, su un cavo analogo, a temperatura ambiente ed a temperatura criogenica. Per farlo si utilizza un analizzatore vettoriale di reti (VNA).
+
+\subsection{Attenuazione cavo coassiale}
+\subsubsection{VNA e matrice di scattering}
+Il VNA è una macchina che permette di misurare le proprietà di trasmissione di un cavo coassiale.
+\subsubsection{Matrice di scattering con separatori termici}
+\subsubsection{Matrice di scattering con separatori termici e cavo di rame}
+\subsubsection{Matrice di scattering del cavo di rame}
+\subsubsection{Calcolo del coefficiente di attenuazione}
+
+
+\subsection{Calibrazione del ricevitore a 1.4 GHz}
+La conoscenza del profilo del coefficente di attenuazione in funzione della temperatura permette di attuare la calibrazione del ricevitore a 1,4 GHz. Si consideri come warm load e cold load, un cavo rispettivamente di lunghezza 12 m e 120 cm. Il cold load è immerso parzialmente nell'azoto liquido portando ad un'attenuazione del segnale.\\
+Per ottenere il segnale effettivo letto dal ricevitore è quindi necessario considerare la variazione della temperatura all'interno del cavo.
+
+\subsubsection{Profilo di temperatura del cavo}
+
+La stima del profilo di temperatura è resa possibile grazie a 4 sensori criogenici e 2 sensori a temperatura ambiente posizionati sul cavo (come mostra la figura sottostante). 
+\\
+figura dei sensori con il metro.
+\\
+I primi 4 sensori restituiscono il valore in Kelvin, mentre gli ultimi due attuano la loro misurazione in gradi Celcius.\\
+Successivamente all' immersione completa del cold load nel criostato che contiene Azoto liquido a pressione ambiente. Dai valori ottenuti dai sensori è quindi possibile determinare l'andamento della temperatura in funzione della posizione. 
+\\\\
+Tabella file temperatura in funzione posizione
+\\\\
+Infine,si fittino i seguenti valori con una funzione sigmoide
+\begin{equation}
+T= \dfrac{a}{1+e^{-k(x-x_{0})}}
+\end{equation}
+Il grafico che si ottiene è il seguente:
+\\\\
+grafico andamento temperatura
+\\\\
+Successivamente, si ricavi dal profilo di  temperatura e dall'andamento del coefficiente di attenuazione in funzione della temperatura il valore di temperatura del cavo cold load e warm load.
+\subsubsection{Temperatura del cavo cold load}
+L'immersione parziale del cavo cold load all'interno del criostato comporta che la temperatura del carico criogenico deve essere corretta. La propagazione della temperatura nel cavo segue il seguente andamento:
+\begin{equation}
+T_{b}= T_{s}e^{-\tau} + T_{C}(1-e^{-\tau})
+\label{Formula ricorsiva}
+\end{equation}
+dove $T_{s}$ è pari a 77,36 K, ovvero la temperatura di ebolizione dell'azoto liquido, $T_{c}$ è il valore della temperatura studiata nel paragrafo [?] e $\tau$ è il coefficiente di attenuazione studiato nel paragrafo [?].
+Si applichi tale relazione iterativamente a dei tratti di lunghezza $\Delta$x. Si scelga come step di lunghezza un valore tale da poter considerare il tratto di cavo preso in considerazione isotermo. Si scelga quindi un valore di $\Delta$x = 1mm.
+L'iterazione dell'equazione \eqref{Formula ricorsiva} è dovuta al fatto che il sistema risulta essere in equilibrio per tutto il tratto di cavo immerso nell'azoto liquido. \'E quindi possibile considerare valida la relazione $T_{b} = T_{s} = 77,36 K$. Nel tratto di cavo scoperto il sistema non è più all'equilibrio, la temperatura del cavo varia ed è quindi necessario determinare il coefficiente di attenuazione $\tau$ del cavo.\\
+Successivamente a tali considerazioni si ricava un valore di $T_{b}$ = ... .
+%\cite{Cold load:Cold load}.
+
+\subsubsection{Temperatura del cavo warm load}
+Per determinare la temperatura del cavo warm load
+\subsubsection{Guadagno del ricevitore}
+\subsubsection{Temperatura di rumore}
