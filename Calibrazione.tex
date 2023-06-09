@@ -69,6 +69,32 @@ I separatori termici vengono connessi tra loro tramite degli adattatori, tramite
 \subsubsection{Matrice di scattering del cavo di rame}
 
 \subsubsection{Calcolo del coefficiente di attenuazione}
+Bisogna ora calcolare il coefficiente di attenuazione $\tau$ del cavo alla frequenza della riga HI. Per farlo valutiamo il coefficiente di trasmissione $\alpha$ = $e^{-\tau}$. Però, dato che la temperatura del cavo non è costante, è più opportuno ricavare il coefficiente di trasmissione per unità di lunghezza e in funzione della temperatura. Assumendo ora che le perdite ohmiche nel metallo siano dominanti rispetto alle perdite nel dielettrico del cavo (approssimazione ben valida), possiamo dire che il coefficiente di trasmissione espresso in potenza è direttamente proporzionale alla resistività $\rho$ del metallo (il campo elettrico va come $\sqrt{\rho}$). Questa, inoltre, è proporzionale alla temperatura secondo la seguente relazione:
+\begin{equation}
+    \rho(T)=\rho_{0}+\alpha[T-T_{0}]
+\end{equation}
+Ora, la potenza in uscita dal cavo è data da:
+\begin{equation}
+    P_{out}=P_{in}(1-R)\alpha
+    \label{potenza}
+\end{equation}
+Dove R e $\alpha$ sono rispettivamente i coefficienti di riflessione e trasmissione espressi in scala lineare. 
+Il VNA,invece, restituisce un valore di $\alpha_{eff}$, dato da $P_{out}=\alpha_{eff}P_{in}$ ed espresso in db:
+\begin{equation}
+    \alpha_{eff}=10\log_{10}\frac{P_{out}}{P_{in}}=s_{21}
+\end{equation}
+Se teniamo in considerazione l'equazione \eqref{potenza} e che R[db] 
+=  $s_{11}$, allora si ottiene:
+\begin{equation}
+    \alpha=\frac{10^{\frac{\alpha_{eff}[db]}{10}}}{1-R}=\frac{10^{\frac{s_{21}[db]}{10}}}{1-10^{\frac{s_{11}[db]}{10}}}\simeq10^{\frac{s_{21}[db]}{10}}
+\end{equation}
+Dove è stato possibile compiere l'ultima approssimazione dato che il valore di $s_{11}$ è minore di 20 db, cioè si ha una correzione al coefficiente di trasmissione minore dell'1$\%$.\\
+Infine, sapendo che $\alpha = e^{-\tau x}$, dove x è la lunghezza del cavo, possiamo ricavare $\tau$ da:
+\begin{equation}
+    \tau=-\frac{\ln{\alpha}}{x}
+\end{equation}
+
+
 \label{ssec:Calcolo del coefficiente di attenuazione}
 
 \subsection{Calibrazione del ricevitore a 1.4 GHz}
@@ -137,7 +163,7 @@ Successivamente all' immersione completa del cold load nel criostato che contien
 
 \end{table}
 
-Infine, si fittino i seguenti valori con una funzione sigmoide:
+Infine, si fittano i seguenti valori con una funzione sigmoide:
 \begin{equation}
 T= \dfrac{a}{1+e^{-k(x-x_{0})}},
 \end{equation}
@@ -148,6 +174,7 @@ Il grafico che si ottiene è il seguente:
 	\caption{Fit del profilo di temperatura}
     	\label{fig:Profilo_temperatura}
 \end{figure}
+
 Successivamente, si ricava dal profilo di  temperatura e dall'andamento del coefficiente di attenuazione in funzione della temperatura il valore di temperatura del cavo cold load e warm load.
 
 
@@ -217,7 +244,7 @@ Grafici tempertura di rumore warm load e cold load
 \\\\
 
 \subsubsection{Conclusione}
-Il procedimento della calibrazione descritto nel seguente capitolo viene eseguito, sia per quanto riguarda il gain che la tempertura di rumore, per tre set di dati differenti campionati a 5 minuti di distanza l'uno dall'altro. Per ogni set di dati si è scelto di considerare solamente i dati ricavati da \eqref{ssec:Temperatura del cavo cold load}.\\
+Il procedimento della calibrazione descritto nel seguente capitolo viene eseguito, sia per quanto riguarda il gain che per la tempertura di rumore, per tre set di dati differenti campionati a 5 minuti di distanza l'uno dall'altro. Per ogni set di dati si è scelto di considerare solamente i dati ricavati da \eqref{ssec:Temperatura del cavo cold load}.\\
 Si attua una media mobile della temperatura di rumore sui  valori dei 3 set di dati e si fitta il segnale ottenuto con una retta, invece per il valore del gain si attua una semplice media.
 \\\\
 Grafico gain mediato e t rumore mediato
