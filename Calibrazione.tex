@@ -115,8 +115,7 @@ La stima del profilo di temperatura è resa possibile grazie a 4 sensori criogen
 
 
 I primi 4 sensori restituiscono il valore in Kelvin, mentre gli ultimi due attuano la loro misurazione in gradi Celcius.\\
-Successivamente all' immersione completa del cold load nel criostato che contiene Azoto liquido a pressione ambiente. Dai valori ottenuti dai sensori è quindi possibile determinare l'andamento della temperatura in funzione della posizione. 
-
+Successivamente all' immersione completa del cold load nel criostato che contiene Azoto liquido a pressione ambiente è quindi possibile determinare l'andamento della temperatura in funzione della posizione.   
 \begin{table}
 \centering
 
@@ -177,10 +176,50 @@ Successivamente a tali considerazioni si ricava un valore di $T_{b}$ = 91,95 K.
 %\cite{Cold load:Cold load}.
 
 \subsubsection{Temperatura del cavo warm load}
+\label{ssec:Temperatura del cavo warm load}
 
 Per determinare la temperatura del cavo warm load il procedimento è simile a quello utilizzato nel paragrafo \ref{ssec:Temperatura del cavo cold load} con la differenza che la totalità del cavo è a temperatura ambiente. Quindi la sorgente e il cavo hanno circa la stessa temperatura $T_{s}$ $\sim$ $T_{c}$ $\sim$ 273,15 K.\\
 Di conseguenza risulta possibile semplificare l'equazzione \eqref{Formula ricorsiva} nel seguente modo:
 (da riguardare la formula perchè quella della relazione dell'amica di Simo è sbagliata.)
 
 \subsubsection{Guadagno del ricevitore}
+\label{ssec:Guadagno del ricevitore}
+I valori della temperatura determinati nei paragrafi \ref{ssec:Temperatura del cavo cold load} e  \ref{ssec:Temperatura del cavo warm load}  vengono utilizzati per ricavare il guadagno del ricivitore (G) e la Temperatura di rumore ($T_{R}$).\\
+Il guadagno o gain è possibile determinarlo attraverso la relazione:
+\begin{equation}
+G = \dfrac{W_{warm}-W_{cold}}{T_{warm}-T_{cold}}.
+\label{Formula gain}
+\end{equation}
+$W_{warm}$ e $W_{cold}$ sono rispettivamente i segnali misurati dal ricevitore quando è collegato al cavo warm load e cold load.
+$T_{warm}$ e $T_{cold}$ sono, invece, le temperature determinate nei paragrafi \ref{ssec:Temperatura del cavo cold load} e  \ref{ssec:Temperatura del cavo warm load}.\\
+Si determina il gain nella regione di interesse, un intervallo di frequenze centrato in $\nu = 1,420405 \cdot  10^{9} Hz$ corrispondente al valore teorico relativo alla riga 21 cm dell'idrogeno neutro.
+\\\\
+Grafico Gain in funzine della frequenza
+\\\\
+Ottenuto il grafico del gain in funzione della frequenza si attua un fit con un polinomio di terzo grado con lo scopo di ottenre un segnale privo di rumore. (?????? non so se è giusta quest'ultima frase).
+
 \subsubsection{Temperatura di rumore}
+Si determina, ora, la temperatura di rumore ($T_{R}$) sia per il cavo warm load si per il cold load utilizzando i valori del gain ottenuti dal plot (referenza con grafico plot) e i valori di $W_{warm}$ e $W_{cold}$ definiti in \ref{ssec:Guadagno del ricevitore}.
+ 
+\begin{equation}
+T_{R} = \dfrac{W_{cold}}{G_{plot}}-T_{cold}
+\label{Temperatura rumore cold}
+\end{equation}
+
+\begin{equation}
+T_{R} = \dfrac{W_{warm}}{G_{plot}}-T_{warm}
+\label{Temperatura rumore warm}
+\end{equation}
+Dove \eqref{Temperatura rumore cold} e \eqref{Temperatura rumore warm } si riferiscono, rispettivamente, alla temperatura di rumore relativa al cavo cold load e warm load.
+Si osserva che il segnale ricavato da \eqref{Temperatura rumore cold} risulta essere meno oscillante rispetto al segnale determinato da \eqref{ssec:Temperatura del cavo warm load}. Si sceglie, di conseguenza, di considerare esclusivamente la temperatura di rumore relativa al cavo cold load.
+\\\\
+Grafici tempertura di rumore warm load e cold load
+\\\\
+
+\subsubsection{Conclusione}
+Il procedimento della calibrazione descritto nel seguente capitolo viene eseguito, sia per quanto riguarda il gain che la tempertura di rumore, per tre set di dati differenti campionati a 5 minuti di distanza l'uno dall'altro. Per ogni set di dati si è scelto di considerare solamente i dati ricavati da \eqref{ssec:Temperatura del cavo cold load}.\\
+Si attua una media mobile della temperatura di rumore sui  valori dei 3 set di dati e si fitta il segnale ottenuto con una retta, invece per il valore del gain si attua una semplice media.
+\\\\
+Grafico gain mediato e t rumore mediato
+\\\\
+I valori finali ottenuti per il guadagno e per $T_{R}$ saranno utilizzati nel calcolo della temperatura di brillanza.
