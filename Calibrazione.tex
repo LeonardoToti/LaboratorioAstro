@@ -12,6 +12,7 @@ Il cavo Cold Load che viene utilizzato nella calibrazione del ricevitore è solo
 \end{figure}
 
 Il rame, però, ha una conducibilità termica molto elevata. Per questo motivo, al fine di prottegere il VNA ed evitare che i suoi cavi lavorino ad una temperatura di 77,36 K, si utilizzano dei separatori termici. Essi stessi tuttavia attenuano il segnale. Viene quindi effettuata una misura intermedia dell'attenuazione dei separatori, collegandoli tra loro. In questo modo è poissibile togliere il loro contributo dal calcolo del coefficiente di attenuazione del cavo di rame.
+
 \subsubsection{VNA e parametri di scattering}
 Il VNA è una macchina che permette di misurare le proprietà di trasmissione di un cavo coassiale i cui estremi sono connessi ai terminali dello strumento. Il VNA presente il laboratorio è un Agilent PNA-X che è in grado di misurare in modo indipendente il segnale di trasmissione e riflessione dalle due porte presenti.
 \begin{figure}[h]
@@ -34,20 +35,20 @@ Quindi ciò che la macchina restituisce è la cosiddetta matrice di scattering i
 \begin{equation}
     s_{22}=10\log_{10} \frac{Potenza\,\,riflessa\,\,nella\,\,porta\,\,2}{Potenza\,\,incidente\,\,dalla\,\,porta\,\,2};
 \end{equation}
-\\NON SO SE METTERE QUESTA PARTE
-Impostiamo che la macchina lavori in una banda di frequenza che varia dai 500 MHz ai 3 GHz e che faccia una scansione in frequenza in 201 punti e con una potenza di 0 dB. Per calibrare la macchina è necessario togliere l’effetto dei cavi di misura: per farlo si danno, tramite calibratore elettronico, degli standard di riferimento: lo standard di riflessione totale e lo standard di trasmissione e di sfasamento. In questo modo viene calcolato l’error box della macchina, cioè la matrice di compensazione dell’effetto dei cavi.
+
 
 
 \subsubsection{Matrice di scattering con separatori termici}
+\label{ssec:Matrice di scattering con separatori termici}
 
-I separatori termici vengono connessi tra loro tramite degli adattatori, tramite tale processo è possibile ricavare i coefficienti di trasmissione, $ s_{21} $, e riflessione, $ s_{11} $, a temperatura ambiente e temperatura criogenica, rispettivamente $ T_{A}\sim290K $ e $ T_{C} \sim77.36K $. Più dettagliatamente:
+I separatori termici vengono connessi tra loro tramite degli adattatori, attraverso tale processo è possibile ricavare i coefficienti di trasmissione, $ s_{21} $, e riflessione, $ s_{11} $, a temperatura ambiente e temperatura criogenica, rispettivamente $ T_{A}\sim290K $ e $ T_{C} = 77.36K $. Più dettagliatamente:
 
 \begin{itemize}
 \item s11: si instaurano onde stazionarie durante il percorso. Sono presenti dei minimi e dei massimi, quindi a determinare lunghezze d'onda il segnale avrà riflessione massima o minima, ma comunque inferiore all'1 \% del segnale;
 \item s21: anche in questo caso sono presenti oscillazioni, con un'attenuazione di 0.4 dB.
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 
 \begin{subfigure}{0.49\textwidth}
@@ -58,6 +59,23 @@ I separatori termici vengono connessi tra loro tramite degli adattatori, tramite
 \hfill
 \begin{subfigure}{0.49\textwidth}
     \includegraphics[width=\textwidth]{S21_TA.pdf}
+    \caption{$s_{21}$ separatori termici a $T_{A}$}
+    \label{fig:sub2}
+\end{subfigure}
+
+\end{figure}
+
+\begin{figure}[H]
+\centering
+
+\begin{subfigure}{0.49\textwidth}
+	\includegraphics[width=\textwidth]{S11_TC.pdf}
+    \caption{$s_{11}$ separatori termici a $T_{C}$}
+    \label{fig:sub1}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\textwidth]{S21_TC.pdf}
     \caption{$s_{21}$ separatori termici a $T_{C}$}
     \label{fig:sub2}
 \end{subfigure}
@@ -65,37 +83,179 @@ I separatori termici vengono connessi tra loro tramite degli adattatori, tramite
 \end{figure}
 
 \subsubsection{Matrice di scattering con separatori termici e cavo di rame}
+\label{ssec:Matrice di scattering con separatori termici e cavo di rame}
+
+Ora, i separatori termici vengono collegati al cavo di rame e ripetute le misure sia a temperatura ambiente, sia a temperatura criogenica immergendoli in azoto liquido.
+
+\begin{figure}[H]
+\centering
+
+\begin{subfigure}{0.49\textwidth}
+	\includegraphics[width=\textwidth]{S11_TA_rame.pdf}
+    \caption{$s_{11}$ separatori termici e rame a $T_{A}$}
+    \label{fig:sub1}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\textwidth]{S21_TA_rame.pdf}
+    \caption{$s_{21}$ separatori termici e rame a $T_{A}$}
+    \label{fig:sub2}
+\end{subfigure}
+
+\end{figure}
+
+\begin{figure}[H]
+\centering
+
+\begin{subfigure}{0.49\textwidth}
+	\includegraphics[width=\textwidth]{S11_TC_rame.pdf}
+    \caption{$s_{11}$ separatori termici e rame a $T_{C}$}
+    \label{fig:sub1}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\textwidth]{S21_TC_rame.pdf}
+    \caption{$s_{21}$ separatori termici e rame a $T_{C}$}
+    \label{fig:sub2}
+\end{subfigure}
+
+\end{figure}
+
+\`E possibile notare un incremento delle oscillazione, infatti l'aumento della lunghezza complessiva porta a un numero maggiore di onde stazionarie; la variazione complessiva tra massimo e minimo rimane comunque di 20 dB.
+
 
 \subsubsection{Matrice di scattering del cavo di rame}
+\label{ssec:Matrice di scattering del cavo di rame}
 
-\subsubsection{Calcolo del coefficiente di attenuazione}
+Ottenuti gli andamenti nelle due configurazioni, descritte in \ref{ssec:Matrice di scattering con separatori termici e cavo di rame} e \ref{ssec:Matrice di scattering con separatori termici}, si può sottrarre il contributo dei separatori e ottenere infine il coefficiente di trasmissione $s_{21}$ per il solo cavo di rame. Viene riportato di seguito l'andamento di tale valore in funzione della frequenza, sia a $ T_{A}\sim290K $, sia a $ T_{C} = 77.36K $.
+
+\begin{figure}[H]
+\centering
+
+\begin{subfigure}{0.49\textwidth}
+	\includegraphics[width=\textwidth]{S21_TA_solo_rame.pdf}
+    \caption{$s_{21}$ solo rame a $T_{A}$}
+    \label{fig:sub1}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\textwidth]{S21_TC_solo_rame.pdf}
+    \caption{$s_{21}$ solo rame a $T_{C}$}
+    \label{fig:sub2}
+\end{subfigure}
+\caption{Parametri di trasmissione del solo cavo di rame}
+\label{fig:Solo_rame}
+\end{figure}
+
+
+
+\subsubsection{Coefficiente di attenuazione}
+\label{ssec:Coefficiente di attenuazione}
+
 Bisogna ora calcolare il coefficiente di attenuazione $\tau$ del cavo alla frequenza della riga HI. Per farlo valutiamo il coefficiente di trasmissione $\alpha$ = $e^{-\tau}$. Però, dato che la temperatura del cavo non è costante, è più opportuno ricavare il coefficiente di trasmissione per unità di lunghezza e in funzione della temperatura. Assumendo ora che le perdite ohmiche nel metallo siano dominanti rispetto alle perdite nel dielettrico del cavo (approssimazione ben valida), possiamo dire che il coefficiente di trasmissione espresso in potenza è direttamente proporzionale alla resistività $\rho$ del metallo (il campo elettrico va come $\sqrt{\rho}$). Questa, inoltre, è proporzionale alla temperatura secondo la seguente relazione:
+
 \begin{equation}
-    \rho(T)=\rho_{0}+\alpha[T-T_{0}]
+    \rho(T)=\rho_{0}+\alpha[T-T_{0}].
 \end{equation}
+
 Ora, la potenza in uscita dal cavo è data da:
+
 \begin{equation}
-    P_{out}=P_{in}(1-R)\alpha
+    P_{out}=P_{in}(1-R)\alpha,
     \label{potenza}
 \end{equation}
-Dove R e $\alpha$ sono rispettivamente i coefficienti di riflessione e trasmissione espressi in scala lineare. 
-Il VNA,invece, restituisce un valore di $\alpha_{eff}$, dato da $P_{out}=\alpha_{eff}P_{in}$ ed espresso in db:
+
+dove R e $\alpha$ sono rispettivamente i coefficienti di riflessione e trasmissione espressi in scala lineare. 
+Il VNA, invece, restituisce un valore di $\alpha_{eff}$, dato da $P_{out}=\alpha_{eff}P_{in}$ ed espresso in db:
+
 \begin{equation}
-    \alpha_{eff}=10\log_{10}\frac{P_{out}}{P_{in}}=s_{21}
+    \alpha_{eff}=10\log_{10}\frac{P_{out}}{P_{in}}=s_{21}.
 \end{equation}
+
 Se teniamo in considerazione l'equazione \eqref{potenza} e che R[db] 
 =  $s_{11}$, allora si ottiene:
+
 \begin{equation}
-    \alpha=\frac{10^{\frac{\alpha_{eff}[db]}{10}}}{1-R}=\frac{10^{\frac{s_{21}[db]}{10}}}{1-10^{\frac{s_{11}[db]}{10}}}\simeq10^{\frac{s_{21}[db]}{10}}
+    \alpha=\frac{10^{\frac{\alpha_{eff}[db]}{10}}}{1-R}=\frac{10^{\frac{s_{21}[db]}{10}}}{1-10^{\frac{s_{11}[db]}{10}}}\simeq10^{\frac{s_{21}[db]}{10}},
 \end{equation}
-Dove è stato possibile compiere l'ultima approssimazione dato che il valore di $s_{11}$ è minore di 20 db, cioè si ha una correzione al coefficiente di trasmissione minore dell'1$\%$.\\
+
+dove è stato possibile compiere l'ultima approssimazione dato che il valore di $s_{11}$ è minore di 20 db, cioè si ha una correzione al coefficiente di trasmissione minore dell'1$\%$.\\
 Infine, sapendo che $\alpha = e^{-\tau x}$, dove x è la lunghezza del cavo, possiamo ricavare $\tau$ da:
+
 \begin{equation}
-    \tau=-\frac{\ln{\alpha}}{x}
+    \tau=-\frac{\ln{\alpha}}{x}.
 \end{equation}
 
+\subsubsection{Verifica andamento lineare}
+\label{ssec:Verifica andamento lineare}
+Essendo noti i valori di $s_{21}$ a $ T_{A}\sim290K $ e $ T_{C} = 77.36K $, e di conseguenza i corrispettivi valori del coefficiente di attenuazione a suddette temperature; per ricavare il valore di $ \tau $ ad ogni temperatura, viene eseguita un'interpolazione con una retta. Per verificare che l'andamento sia effettivamente lineare, ci si avvale di un valore teorico, ricavato dal grafico in figura \ref{fig:Tre_punti} ,a $ T \sim4,2K $,  $ \tau \sim 4\cdot  10^{-5}  Neper/mm$.
 
-\label{ssec:Calcolo del coefficiente di attenuazione}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{Tre_punti.png}
+	\caption{Tau vs Temperatura a 2.5 GHz}
+    	\label{fig:Tre_punti}
+\end{figure}
+
+I valori di $s_{21}$ alla frequenza di interesse sono ricavati dai plot in figura \ref{fig:Solo_rame},  tramite la funzione interp della libreria numpy di python. Tale funzione, assegnato un set discreto di dati come frequenze e $s_{21}$, restituisce il valore a un dato x-value richiesto, eseguendo un'interpolazione lineare. Tale procedura è necessaria in quanto il set di dati discreto non presenta il valore esattamente a 2,5 GHz. Vengono riportati in tabella i valori finali:
+
+\begin{table}[h!]
+\centering
+
+\begin{tabular}{ |c|c|  }
+	\hline
+	\multicolumn{2}{|c|}{$\tau $ ricavati a 2.5 GHz} \\
+	\hline
+	Temperatura (K)& $\tau\cdot  10^{-5}$ (Neper/mm) \\
+	\hline
+	4,2   &  4,0   \\
+	77,36  & 5,6 \\
+	290 &14,1 \\
+	\hline
+\end{tabular}
+
+\end{table}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{Tau_Temp_2,5.pdf}
+	\caption{I punti in blu sono i valori riportati in tabella, i due punti rossi sono la rappresentazione dei restanti punti del grafico in figura \ref{fig:Tre_punti}, mostrati per vedere quanto si discostassero dai punti sperimentali}
+    	\label{fig:Tau_2,5}
+\end{figure}
+
+Dal grafico in figura \ref{fig:Tau_2,5}, si evince chiaramente un andamento lineare che si può estendere al caso di 1,4 GHz.
+
+\subsubsection{Calcolo coefficiente a 1.4 GHz}
+\label{ssec:Calcolo coefficiente a 1.4 GHz}
+
+Viene rieseguita la procedura descritta in \ref{ssec:Verifica andamento lineare}, applicata al caso 1.4 GHz. Si ottengono i seguenti risultati: 
+
+\begin{table}[H]
+\centering
+
+\begin{tabular}{ |c|c|  }
+	\hline
+	\multicolumn{2}{|c|}{$\tau $ ricavati a 1.4 GHz} \\
+	\hline
+	Temperatura (K)& $\tau\cdot  10^{-5}$ (Neper/mm) \\
+	\hline
+	77,36  & 4,7 \\
+	290 &10,3 \\
+	\hline
+\end{tabular}
+
+\end{table}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{Tau_Temp_1,4.pdf}
+	\caption{Interpolazione lineare dei $\tau$ a 1,4 GHz}
+    	\label{fig:Tau_2.5}
+\end{figure}
+
+
 
 \subsection{Calibrazione del ricevitore a 1.4 GHz}
 
@@ -107,7 +267,7 @@ Per ottenere il segnale effettivo letto dal ricevitore è quindi necessario cons
 
 La stima del profilo di temperatura è resa possibile grazie a 4 sensori criogenici e 2 sensori a temperatura ambiente posizionati sul cavo, come mostrato in figura \ref{fig:cavi}. 
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 
 	\begin{subfigure}{0.49\textwidth}
@@ -140,9 +300,10 @@ La stima del profilo di temperatura è resa possibile grazie a 4 sensori criogen
 \end{figure}
 
 
-I primi 4 sensori restituiscono il valore in Kelvin, mentre gli ultimi due attuano la loro misurazione in gradi Celcius.\\
-Successivamente all' immersione completa del cold load nel criostato che contiene Azoto liquido a pressione ambiente è quindi possibile determinare l'andamento della temperatura in funzione della posizione.   
-\begin{table}
+I primi 4 sensori restituiscono il valore in Kelvin, mentre gli ultimi due attuano la loro misurazione in gradi Celsius.\\
+Successivamente all' immersione completa del cold load nel criostato, che contiene azoto liquido a pressione ambiente, dai valori ottenuti dai sensori è quindi possibile determinare l'andamento della temperatura in funzione della posizione: 
+
+\begin{table}[H]
 \centering
 
 \begin{tabular}{ |c|c|  }
@@ -163,12 +324,13 @@ Successivamente all' immersione completa del cold load nel criostato che contien
 
 \end{table}
 
-Infine, si fittano i seguenti valori con una funzione sigmoide:
+Infine, si fittino i seguenti valori con una funzione sigmoidale:
 \begin{equation}
 T= \dfrac{a}{1+e^{-k(x-x_{0})}},
 \end{equation}
 Il grafico che si ottiene è il seguente:
-\begin{figure}[h]
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.8]{Profilo_temperatura.pdf}
 	\caption{Fit del profilo di temperatura}
@@ -188,12 +350,12 @@ T_{b}= T_{s}e^{-\tau} + T_{C}(1-e^{-\tau}),
 \label{Formula ricorsiva}
 \end{equation}
 
-dove $T_{s}$ è pari a 77,36 K, ovvero la temperatura di ebolizione dell'azoto liquido, $T_{c}$ è il valore della temperatura studiata nel paragrafo \ref{ssec:Profilo di temperatura del cavo} e $\tau$ è il coefficiente di attenuazione studiato nel paragrafo \ref{ssec:Calcolo del coefficiente di attenuazione}.
+dove $T_{s}$ è pari a 77,36 K, ovvero la temperatura di ebolizione dell'azoto liquido, $T_{c}$ è il valore della temperatura studiata nel paragrafo \ref{ssec:Profilo di temperatura del cavo} e $\tau$ è il coefficiente di attenuazione studiato nel paragrafo \ref{ssec:Calcolo coefficiente a 1.4 GHz}.
 Si applichi tale relazione iterativamente a dei tratti di lunghezza $\Delta$x. Lo step di lunghezza viene scelto in modo tale da poter considerare il tratto di cavo preso in considerazione isotermo. Si scelga quindi un valore di $\Delta$x = 1 mm.
 L'iterazione dell'equazione \eqref{Formula ricorsiva} è dovuta al fatto che il sistema risulta essere in equilibrio per tutto il tratto di cavo immerso nell'azoto liquido. \`E quindi possibile considerare valida la relazione $T_{b} = T_{s} = 77,36 K$. Nel tratto di cavo scoperto il sistema non è più all'equilibrio, la temperatura del cavo varia ed è quindi necessario determinare il coefficiente di attenuazione $\tau$ del cavo.\\
-Successivamente a tali considerazioni si ricava un valore di $T_{b}$ = 91,95 K.
+Risultante a tali considerazioni si ricava un valore di $T_{b}$ = 91,95 K.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.8]{Temperatura_vs_posizione.pdf}
 	\caption{Andamento della temperatura di cold load in funzione della posizione}
@@ -205,48 +367,92 @@ Successivamente a tali considerazioni si ricava un valore di $T_{b}$ = 91,95 K.
 \subsubsection{Temperatura del cavo warm load}
 \label{ssec:Temperatura del cavo warm load}
 
-Per determinare la temperatura del cavo warm load il procedimento è simile a quello utilizzato nel paragrafo \ref{ssec:Temperatura del cavo cold load} con la differenza che la totalità del cavo è a temperatura ambiente. Quindi la sorgente e il cavo hanno circa la stessa temperatura $T_{s}$ $\sim$ $T_{c}$ $\sim$ 273,15 K.\\
-Di conseguenza risulta possibile semplificare l'equazzione \eqref{Formula ricorsiva} nel seguente modo:
-(da riguardare la formula perchè quella della relazione dell'amica di Simo è sbagliata.)
+Per determinare la temperatura del cavo warm load il procedimento è simile a quello utilizzato nel paragrafo \ref{ssec:Temperatura del cavo cold load} con la differenza che la totalità del cavo è a temperatura ambiente. Quindi la sorgente e il cavo hanno circa la stessa temperatura $T_{s}$ $\sim$ $T_{c}$ $\sim$ 294,55 K.\\
+Di conseguenza risulta possibile semplificare l'equazione \eqref{Formula ricorsiva}, ottenendo come risultato per $ T_{warm} $ proprio 294,55 K.
+
+
 
 \subsubsection{Guadagno del ricevitore}
 \label{ssec:Guadagno del ricevitore}
-I valori della temperatura determinati nei paragrafi \ref{ssec:Temperatura del cavo cold load} e  \ref{ssec:Temperatura del cavo warm load}  vengono utilizzati per ricavare il guadagno del ricivitore (G) e la Temperatura di rumore ($T_{R}$).\\
-Il guadagno o gain è possibile determinarlo attraverso la relazione:
+
+I valori della temperatura determinati nei paragrafi \ref{ssec:Temperatura del cavo cold load} e  \ref{ssec:Temperatura del cavo warm load}  vengono utilizzati per ricavare il guadagno del ricevitore, G, e la Temperatura di rumore, $T_{R}$.\\
+Il guadagno, o gain, è possibile determinarlo attraverso la relazione:
+
 \begin{equation}
-G = \dfrac{W_{warm}-W_{cold}}{T_{warm}-T_{cold}}.
+G = \dfrac{W_{warm}-W_{cold}}{T_{warm}-T_{cold}},
 \label{Formula gain}
 \end{equation}
+
 $W_{warm}$ e $W_{cold}$ sono rispettivamente i segnali misurati dal ricevitore quando è collegato al cavo warm load e cold load.
 $T_{warm}$ e $T_{cold}$ sono, invece, le temperature determinate nei paragrafi \ref{ssec:Temperatura del cavo cold load} e  \ref{ssec:Temperatura del cavo warm load}.\\
 Si determina il gain nella regione di interesse, un intervallo di frequenze centrato in $\nu = 1,420405 \cdot  10^{9} Hz$ corrispondente al valore teorico relativo alla riga 21 cm dell'idrogeno neutro.
-\\\\
-Grafico Gain in funzine della frequenza
-\\\\
-Ottenuto il grafico del gain in funzione della frequenza si attua un fit con un polinomio di terzo grado con lo scopo di ottenre un segnale privo di rumore. (?????? non so se è giusta quest'ultima frase).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{Fit_Gain.pdf}
+	\caption{Sovrapposizione del fit rispetto al gain}
+    	\label{fig:Fit_Gain}
+\end{figure}
+
+Ottenuto il grafico del gain in funzione della frequenza, si nota una notevole oscillazione del valore, per tale motivo viene esseguito un fit con un polinomio di terzo grado, come riportato in figura \ref{fig:Fit_Gain}.
 
 \subsubsection{Temperatura di rumore}
-Si determina, ora, la temperatura di rumore ($T_{R}$) sia per il cavo warm load si per il cold load utilizzando i valori del gain ottenuti dal plot (referenza con grafico plot) e i valori di $W_{warm}$ e $W_{cold}$ definiti in \ref{ssec:Guadagno del ricevitore}.
+Si determina, ora, la temperatura di rumore, $T_{R}$, sia per il cavo warm load sia per il cold load utilizzando i valori del gain ottenuti dal fit in figura \ref{fig:Fit_Gain} e i valori di $W_{warm}$ e $W_{cold}$ definiti in \ref{ssec:Guadagno del ricevitore}:
  
 \begin{equation}
-T_{R} = \dfrac{W_{cold}}{G_{plot}}-T_{cold}
+T_{R} = \dfrac{W_{cold}}{G_{plot}}-T_{cold},
 \label{Temperatura rumore cold}
 \end{equation}
 
 \begin{equation}
-T_{R} = \dfrac{W_{warm}}{G_{plot}}-T_{warm}
+T_{R} = \dfrac{W_{warm}}{G_{plot}}-T_{warm},
 \label{Temperatura rumore warm}
 \end{equation}
-Dove \eqref{Temperatura rumore cold} e \eqref{Temperatura rumore warm } si riferiscono, rispettivamente, alla temperatura di rumore relativa al cavo cold load e warm load.
-Si osserva che il segnale ricavato da \eqref{Temperatura rumore cold} risulta essere meno oscillante rispetto al segnale determinato da \eqref{ssec:Temperatura del cavo warm load}. Si sceglie, di conseguenza, di considerare esclusivamente la temperatura di rumore relativa al cavo cold load.
-\\\\
-Grafici tempertura di rumore warm load e cold load
-\\\\
+
+Dove \eqref{Temperatura rumore cold} e \eqref{Temperatura rumore warm} si riferiscono, rispettivamente, alla temperatura di rumore relativa al cavo cold load e al cavo warm load.
+Si osserva che il segnale ricavato da \eqref{Temperatura rumore cold} risulta essere meno oscillante rispetto al segnale determinato da \eqref{Temperatura rumore warm}. Si sceglie, di conseguenza, di considerare esclusivamente la temperatura di rumore relativa al cavo cold load.
+
+\begin{figure}[H]
+\centering
+
+\begin{subfigure}[h!]{0.49\textwidth}
+	\includegraphics[width=\textwidth]{Temperatura_rumore_cold.pdf}
+    \label{fig:sub1}
+\end{subfigure}
+\hfill
+\begin{subfigure}[h!]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{Temperatura_rumore_warm.pdf}
+    \label{fig:sub2}
+\end{subfigure}
+\caption{Temperature di rumore in funzione della frequenza}
+\end{figure}
+
 
 \subsubsection{Conclusione}
-Il procedimento della calibrazione descritto nel seguente capitolo viene eseguito, sia per quanto riguarda il gain che per la tempertura di rumore, per tre set di dati differenti campionati a 5 minuti di distanza l'uno dall'altro. Per ogni set di dati si è scelto di considerare solamente i dati ricavati da \eqref{ssec:Temperatura del cavo cold load}.\\
-Si attua una media mobile della temperatura di rumore sui  valori dei 3 set di dati e si fitta il segnale ottenuto con una retta, invece per il valore del gain si attua una semplice media.
-\\\\
-Grafico gain mediato e t rumore mediato
-\\\\
+Il procedimento della calibrazione descritto nel suddetto capitolo viene eseguito, sia per quanto riguarda il gain che la tempertura di rumore, per tre set di dati differenti campionati a 5 minuti di distanza l'uno dall'altro. Per ogni set di dati si è scelto di considerare solamente i dati ricavati da \eqref{ssec:Temperatura del cavo cold load}.\\
+I tre set di dati vengono prima mediati tra loro, successivamente viene attuata una media mobile ed infine viene eseguito un fit con un polinomio di primo grado. Per quanto concerne i tre valori dei gain, essi vengono semplicemente mediati. 
+
+\begin{figure}[H]
+\centering
+
+\begin{subfigure}[h!]{0.49\textwidth}
+	\includegraphics[width=\textwidth]{Fit_T_rumore.pdf}
+	\caption{Fit della temperatura di rumore}
+    \label{fig:sub1}
+\end{subfigure}
+\hfill
+\begin{subfigure}[h!]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{Media_Gain.pdf}
+    \caption{Media tra i Gain}
+    \label{fig:sub2}
+\end{subfigure}
+\end{figure}
+
+
+
 I valori finali ottenuti per il guadagno e per $T_{R}$ saranno utilizzati nel calcolo della temperatura di brillanza.
+
+
+
+
+
