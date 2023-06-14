@@ -9,9 +9,35 @@ Media mobile, con grafico media mobile
 
 
 \subsection{Temperatura di Brillanza}
-Calcolo della temperatura, vengono utilizzati i file con t rumore e gain mediato. GRafico con temperatura alte. 
+Ora, si vuole calcolare la temperatura di brillana $T_{B}$. Quest'ultima è una grandezza fondamentale nello studio di una sorgente astrofisica. Per ricavarla, possiamo utlizzare l'approssimazione $T_{B} \simeq T_{A}$, dove $T_{A}$ è la temperatura di antenna, poichè ci troviamo nel caso di sorgente estesa, $\Omega_{A} \ll \Omega_{B}$.\\
+Per determinare $T_{A}$ utilizziamo la relazione:
+\begin{equation}
+    W_{out}=GT_{sys}=G[T_{A}+T_{room}]
+\end{equation}
+dove $G, T_{sys}$ e $T_{room}$ sono rispettivamente il Gain, la temperatura del sistema e la temperatura di rumore.
+Da qui appunto si ottiene che:
+\begin{equation}
+    T_{A}=T_{sys}-T_{rum}=\frac{W_{out}}{G}-T_{room} 
+\label{temp antenna}
+\end{equation}
+Nella temperatura ottenuta però, oltre al termine dovuto al segnale proveniente dal cielo, $T_{cielo}$, è contenuta anche la temperatura di rumore del cavo, $T_{c}$, secondo la relazione:
+\begin{equation}
+    T_{A}=T_{cielo}e^{-\tau}+T_{c}(1-e^{-\tau})
+\end{equation}
+Perciò, la temperatura di brillanza del solo segnale è data da:
+\begin{equation}
+    T_{cielo}=[T_{A}-T_{c}(1-e^{-\tau})]e^{\tau}
+\end{equation}
 
 \subsection{Sottrazione rumore}
+Quindi, per prima cosa si converte il segnale in temperatura d'antenna utilizzando la relazione \eqref{temp antenna}.\\\\
+FIGURA GRAFICO TEMPERATURA DI BRILLANZA PRIMA DELLA RIMOZIONE DEL FONDO E DEL CAVO\\\\
+Successivamente si procede alla rimozione del segnale di fondo e della temperatura di rumore del cavo.\\
+Per la rimozione del fondo si utilizza la libreria $Specutils$ di Python. Questa permette, tramite la funzione $fit\_continuum$, di fare un fit polinomiale del segnale escludendo determinate regioni. Nel nostro caso abbiamo escluso le regioni dei picchi che sovrastano il fondo. La funzione $fit\_continuum$, in particolare, per eseguire il fit, utilizza il Polinomio di Čebyšëv, la cui definizione in forma esplicita è data da:
+\begin{equation}
+    T_n(x)=\sum_{h=0}^{[n/2]} (-1)^h {n \choose 2h} x^{n-2h} (1-x^2)^h
+\end{equation}
+dove con $[n/2]$ si intende la parte intera di $n/2$. RFERENZA A WIKIPEDIA
 
 \subsubsection{Sottrazione contributo cavo}
 Immagine da fare del solo segnale senza cavo
