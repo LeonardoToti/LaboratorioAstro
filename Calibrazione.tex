@@ -1,5 +1,6 @@
 \section{Calibrazione}
-La calibrazione del ricevitore a 1.4 a GHz viene effettuata utilizzando due sorgenti di riferimento, che sono due carichi coassiali adattati, cioè due resistenze a 50 $\Omega$. Questi lavorano a due temperature diverse: uno a temperatura ambiente (\textit{warm load}) e l'altro alla temperatura di ebollizione dell'azoto liquido, ovvero 77,36 K (\textit{cold load}). \\\\Il carico a temperatura criogenica è connesso al ricevitore tramite un cavo coassiale il quale è immerso parzialmente nell'azoto liquido. Perciò, dato che la temperatura del cavo non è uniforme, ne vanno studiate le caratteristiche di attenuazione in laboratorio, su un cavo analogo, a temperatura ambiente ed a temperatura criogenica. Per farlo si utilizza un analizzatore vettoriale di reti (VNA).
+La calibrazione del ricevitore a 1.4 a GHz viene effettuata utilizzando due sorgenti di riferimento, che sono due carichi coassiali adattati, cioè due resistenze a 50 $\Omega$. Questi lavorano a due temperature diverse: uno a temperatura ambiente (\textit{warm load}) e l'altro alla temperatura di ebollizione dell'azoto liquido, ovvero 77,36 K (\textit{cold load}). 
+\\\\Il carico a temperatura criogenica è connesso al ricevitore tramite un cavo coassiale il quale è immerso parzialmente nell'azoto liquido. Perciò, dato che la temperatura del cavo non è uniforme, ne vanno studiate le caratteristiche di attenuazione in laboratorio, su un cavo analogo, a temperatura ambiente ed a temperatura criogenica. Per farlo si utilizza un analizzatore vettoriale di reti (VNA) \cite{Calibrazione-ricevitori}.
 
 \subsection{Attenuazione cavo coassiale}
 Il cavo Cold Load che viene utilizzato nella calibrazione del ricevitore è solo parzialmente immerso nell'azoto liquido, la sua temperatura non è quindi costante. Perciò, il coefficiente di attenuazione del cavo viene misurato con il VNA sia a temperatura ambiente, sia a temperatura criogenica. Per farlo si utilizza un cavo di rame analogo di forma elicoidale, così da facilitarne l'immersione nell'azoto, e di lunghezza 203 cm. 
@@ -41,11 +42,11 @@ Quindi ciò che la macchina restituisce è la cosiddetta matrice di scattering i
 \subsubsection{Matrice di scattering con separatori termici}
 \label{ssec:Matrice di scattering con separatori termici}
 
-I separatori termici vengono connessi tra loro tramite degli adattatori, attraverso tale processo è possibile ricavare i coefficienti di trasmissione, $ s_{21} $, e riflessione, $ s_{11} $, a temperatura ambiente e temperatura criogenica, rispettivamente $ T_{A}\sim290K $ e $ T_{C} = 77.36K $. Più dettagliatamente:
+I separatori termici vengono connessi tra loro tramite degli adattatori, attraverso tale processo è possibile ricavare i coefficient $ s_{11} $ e $ s_{21} $, a temperatura ambiente e temperatura criogenica, rispettivamente $ T_{A}\sim290K $ e $ T_{C} = 77.36K $. Più dettagliatamente:
 
 \begin{itemize}
-\item s11: si instaurano onde stazionarie durante il percorso. Sono presenti dei minimi e dei massimi, quindi a determinare lunghezze d'onda il segnale avrà riflessione massima o minima, ma comunque inferiore all'1 \% del segnale;
-\item s21: anche in questo caso sono presenti oscillazioni, con un'attenuazione di 0.4 dB.
+\item $s_{11}$: si instaurano onde stazionarie durante il percorso. Sono presenti dei minimi e dei massimi, quindi a determinare lunghezze d'onda il segnale avrà riflessione massima o minima, ma comunque inferiore all'1 \% del segnale;
+\item $s_{21}$: anche in questo caso sono presenti oscillazioni, con un'attenuazione di 0.4 dB.
 \end{itemize}
 
 \begin{figure}[H]
@@ -180,7 +181,7 @@ Se teniamo in considerazione l'equazione \eqref{potenza} e che R[db]
 \end{equation}
 
 dove è stato possibile compiere l'ultima approssimazione dato che il valore di $s_{11}$ è minore di 20 db, cioè si ha una correzione al coefficiente di trasmissione minore dell'1$\%$.\\
-Infine, sapendo che $\alpha = e^{-\tau x}$, dove x è la lunghezza del cavo, possiamo ricavare $\tau$ da:
+Infine, sapendo che $\alpha = e^{-\tau x}$, dove x è la lunghezza del cavo, possiamo ricavare $\tau$ attraverso:
 
 \begin{equation}
     \tau=-\frac{\ln{\alpha}}{x}.
@@ -197,7 +198,7 @@ Essendo noti i valori di $s_{21}$ a $ T_{A}\sim290K $ e $ T_{C} = 77.36K $, e di
     	\label{fig:Tre_punti}
 \end{figure}
 
-I valori di $s_{21}$ alla frequenza di interesse sono ricavati dai plot in figura \ref{fig:Solo_rame},  tramite la funzione interp della libreria numpy di python. Tale funzione, assegnato un set discreto di dati come frequenze e $s_{21}$, restituisce il valore a un dato x-value richiesto, eseguendo un'interpolazione lineare. Tale procedura è necessaria in quanto il set di dati discreto non presenta il valore esattamente a 2,5 GHz. Vengono riportati in tabella i valori finali:
+I valori di $s_{21}$ alla frequenza di interesse sono ricavati dai plot in figura \ref{fig:Solo_rame},  tramite la funzione $interp$ della libreria numpy di python. Tale funzione, assegnato un set discreto di dati come frequenze e $s_{21}$, restituisce il valore a un dato x-value richiesto, eseguendo un'interpolazione lineare. Tale procedura è necessaria in quanto il set di dati discreto non presenta il valore esattamente a 2,5 GHz. Vengono riportati in tabella i valori finali:
 
 \begin{table}[h!]
 \centering
@@ -324,7 +325,7 @@ Successivamente all' immersione completa del cold load nel criostato, che contie
 
 \end{table}
 
-Infine, si fittino i seguenti valori con una funzione sigmoidale:
+Infine, vengono fittati i seguenti valori con una funzione sigmoidale:
 \begin{equation}
 T= \dfrac{a}{1+e^{-k(x-x_{0})}},
 \end{equation}
@@ -346,14 +347,14 @@ Successivamente, si ricava dal profilo di  temperatura e dall'andamento del coef
 L'immersione parziale del cavo cold load all'interno del criostato comporta che la temperatura del carico criogenico deve essere corretta. La propagazione della temperatura nel cavo segue il seguente andamento:
 
 \begin{equation}
-T_{b}= T_{s}e^{-\tau} + T_{C}(1-e^{-\tau}),
+T_{cold}= T_{s}e^{-\tau} + T_{c}(1-e^{-\tau}),
 \label{Formula ricorsiva}
 \end{equation}
 
-dove $T_{s}$ è pari a 77,36 K, ovvero la temperatura di ebolizione dell'azoto liquido, $T_{c}$ è il valore della temperatura studiata nel paragrafo \ref{ssec:Profilo di temperatura del cavo} e $\tau$ è il coefficiente di attenuazione studiato nel paragrafo \ref{ssec:Calcolo coefficiente a 1.4 GHz}.
+dove $T_{s}$ è pari a 77,36 K, ovvero la temperatura di ebollizione dell'azoto liquido, $T_{c}$ è il valore della temperatura studiata nel paragrafo \ref{ssec:Profilo di temperatura del cavo} e $\tau$ è il coefficiente di attenuazione studiato nel paragrafo \ref{ssec:Calcolo coefficiente a 1.4 GHz}.
 Si applichi tale relazione iterativamente a dei tratti di lunghezza $\Delta$x. Lo step di lunghezza viene scelto in modo tale da poter considerare il tratto di cavo preso in considerazione isotermo. Si scelga quindi un valore di $\Delta$x = 1 mm.
-L'iterazione dell'equazione \eqref{Formula ricorsiva} è dovuta al fatto che il sistema risulta essere in equilibrio per tutto il tratto di cavo immerso nell'azoto liquido. \`E quindi possibile considerare valida la relazione $T_{b} = T_{s} = 77,36 K$. Nel tratto di cavo scoperto il sistema non è più all'equilibrio, la temperatura del cavo varia ed è quindi necessario determinare il coefficiente di attenuazione $\tau$ del cavo.\\
-Risultante a tali considerazioni si ricava un valore di $T_{b}$ = 91,95 K.
+L'iterazione dell'equazione \eqref{Formula ricorsiva} è dovuta al fatto che il sistema risulta essere in equilibrio per tutto il tratto di cavo immerso nell'azoto liquido. \`E quindi possibile considerare valida la relazione $T_{cold} = T_{s} = 77,36 K$. Nel tratto di cavo scoperto il sistema non è più all'equilibrio, la temperatura del cavo varia ed è quindi necessario determinare il coefficiente di attenuazione $\tau$ del cavo.\\
+Risultante a tali considerazioni si ricava un valore di $T_{cold}$ = 91,95 K.
 
 \begin{figure}[H]
 	\centering
@@ -394,7 +395,7 @@ Si determina il gain nella regione di interesse, un intervallo di frequenze cent
     	\label{fig:Fit_Gain}
 \end{figure}
 
-Ottenuto il grafico del gain in funzione della frequenza, si nota una notevole oscillazione del valore, per tale motivo viene esseguito un fit con un polinomio di terzo grado, come riportato in figura \ref{fig:Fit_Gain}.
+Ottenuto il grafico del gain in funzione della frequenza, si nota una notevole oscillazione del valore, per tale motivo viene eseguito un fit con un polinomio di terzo grado, come riportato in figura \ref{fig:Fit_Gain}.
 
 \subsubsection{Temperatura di rumore}
 Si determina, ora, la temperatura di rumore, $T_{R}$, sia per il cavo warm load sia per il cold load utilizzando i valori del gain ottenuti dal fit in figura \ref{fig:Fit_Gain} e i valori di $W_{warm}$ e $W_{cold}$ definiti in \ref{ssec:Guadagno del ricevitore}:
@@ -429,7 +430,8 @@ Si osserva che il segnale ricavato da \eqref{Temperatura rumore cold} risulta es
 
 
 \subsubsection{Conclusione}
-Il procedimento della calibrazione descritto nel suddetto capitolo viene eseguito, sia per quanto riguarda il gain che la tempertura di rumore, per tre set di dati differenti campionati a 5 minuti di distanza l'uno dall'altro. Per ogni set di dati si è scelto di considerare solamente i dati ricavati da \eqref{ssec:Temperatura del cavo cold load}.\\
+\label{sssec:Conclusione}
+Il procedimento della calibrazione descritto nel suddetto capitolo viene eseguito, sia per quanto riguarda il gain che la temperatura di rumore, per tre set di dati differenti, campionati a 5 minuti di distanza l'uno dall'altro. Per ogni set di dati si è scelto di considerare solamente i dati ricavati da \eqref{ssec:Temperatura del cavo cold load}.\\
 I tre set di dati vengono prima mediati tra loro, successivamente viene attuata una media mobile ed infine viene eseguito un fit con un polinomio di primo grado. Per quanto concerne i tre valori dei gain, essi vengono semplicemente mediati. 
 
 \begin{figure}[H]

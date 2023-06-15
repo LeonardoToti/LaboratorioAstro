@@ -10,9 +10,9 @@ Le coordinate, in azimuth ed elevazione, da fornire alla parabola vengono ricava
 
 \subsection{Composizione della mappa}
 
-Per ogni osservazione vengono in totale utilizzati 32 file, le rispettive coordinate azimuth ed elevazione sono sempre ricavabili sfruttando la funzione $transform_to$. Per ogni file viene eseguita l'analisi delle velocità descritta nella sezione \ref{Analisi Dati e Velocità}. D'interesse è il valore della temperatura di brillanza in corrispondenza del primo picco osservato. 
+Per ogni osservazione vengono in totale utilizzati 32 file, le rispettive coordinate azimuth ed elevazione sono sempre ricavabili sfruttando la funzione $transform\_to$. Per ogni file viene eseguita l'analisi delle velocità descritta nella sezione \ref{Analisi Dati e Velocità}. D'interesse è il valore della temperatura di brillanza in corrispondenza del primo picco osservato. 
 \\\\
-Analizzando ognuno dei set di dati, si possono comporre le varie righe, corrispondenti a declinazioni diverse, attraverso la funzione di stampa $\textit{imshow}$, presenta nella libreria $\textit{mathplotlib}$ di python. Nel dettaglio, è possibile passare, come argomento della funzione, la variabile $\textit{extent}$, ovvero le coordinate che compongono la griglia, nel nostro caso [290-308; 38-47].
+Analizzando ognuno dei set di dati, si possono comporre le varie righe, corrispondenti a declinazioni diverse, attraverso la funzione di stampa $\textit{imshow}$, presenta nella libreria $\textit{mathplotlib}$ di python. Nel dettaglio, è possibile passare, come argomento della funzione, la variabile $\textit{extent}$, ovvero le coordinate che compongono la griglia, nel nostro caso [290-320; 38-47].
 \\\\
 Il risultato finale è qui riportato: 
 
@@ -25,7 +25,7 @@ Il risultato finale è qui riportato:
 
 \subsection{Processo di smoothing della mappa}
 
-Il risultato ottenuto, mostrato in figura \ref{fig:Mappa_grezza}, è notevolmente grezzo e irregolare. Per tale motivazione, viene attenuata una procedura di smoothing della mappa, al fine di ottenere un risultato continuo ed uniforme.
+Il risultato ottenuto, mostrato in figura \ref{fig:Mappa_grezza}, è notevolmente grezzo e irregolare. Per tale motivazione, viene attuata una procedura di smoothing della mappa, al fine di ottenere un risultato continuo ed uniforme.
 \\\\
 La procedura si dipana in due passaggi. Il primo step consiste nell'applicare una convoluzione tra il set di dati e un kernel gaussiano bidimensionale. Ci si avvale direttamente della funzione $\textit{convolve}$ ottenendo la seguente mappa:
 
