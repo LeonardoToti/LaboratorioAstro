@@ -19,18 +19,22 @@
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{float}
-
+\usepackage{wrapfig}
 
 \usepackage{epigraph}
 \usepackage{pdfpages}
 \usepackage{ragged2e}
 \usepackage[version=3]{mhchem}
 
+\usepackage[backend=bibtex, sorting=none]{biblatex}
+
+\addbibresource{Bibliografia.bib}
+
 \begin{document}
 
 
 	\begin{titlepage}
-	Dobbiamo inserire titolo, gruppo e chi siamo e pace
+	
 	\end{titlepage}
 	\newpage        
 	\tableofcontents                        
@@ -44,8 +48,8 @@
 	\include{Mappa}
 	\include{Conclusione}  
 	
-	\bibliographystyle{plain}
-	\bibliography{Bibliografia}	 
+	%\bibliographystyle{plain}
+	\printbibliography   
 	   
 \end{document}
         
